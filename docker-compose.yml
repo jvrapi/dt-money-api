@@ -1,0 +1,24 @@
+name: dt-money-infra
+
+services:
+  dt-money-database:
+    image: postgres:16.3-alpine3.20
+    container_name: dt-money-database
+    environment:
+      POSTGRES_PASSWORD: postgres2022!
+      POSTGRES_DB: dt-money
+    ports:
+      - 5432:5432
+
+  dt-money-database-admin:
+    image: dpage/pgadmin4:latest
+    container_name: dt-money-database-admin
+    depends_on:
+      - dt-money-database
+    environment:
+      PGADMIN_DEFAULT_EMAIL: rapi@admin.com
+      PGADMIN_DEFAULT_PASSWORD: rapi
+    ports:
+      - 8080:80
+
+
