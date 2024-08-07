@@ -10,7 +10,7 @@ import { TransactionMapper } from '../mappers';
 export class PrismaTransactionRepository implements TransactionRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async list(): Promise<Transaction[]> {
+  async findAll(): Promise<Transaction[]> {
     const transactions = await this.prismaService.transaction.findMany();
     return transactions.map(TransactionMapper.toApp);
   }

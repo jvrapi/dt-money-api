@@ -9,6 +9,7 @@ export class TransactionMapper {
       ...raw,
       price: Number(raw.price),
       type: raw.type as TransactionType,
+      categoryId: raw.categoryId,
     });
   }
 }

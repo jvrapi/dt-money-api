@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
 
-import { TransactionRepository } from '@/app/repositories';
+import { CategoryRepository, TransactionRepository } from '@/app/repositories';
 
 import { PrismaService } from '../database/connection';
-import { PrismaTransactionRepository } from '../database/repositories';
+import {
+  PrismaCategoryRepository,
+  PrismaTransactionRepository,
+} from '../database/repositories';
 
 @Module({
   providers: [
@@ -11,8 +14,12 @@ import { PrismaTransactionRepository } from '../database/repositories';
       provide: TransactionRepository,
       useClass: PrismaTransactionRepository,
     },
+    {
+      provide: CategoryRepository,
+      useClass: PrismaCategoryRepository,
+    },
     PrismaService,
   ],
-  exports: [TransactionRepository],
+  exports: [CategoryRepository, TransactionRepository],
 })
 export class DatabaseModule {}

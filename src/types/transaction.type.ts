@@ -1,13 +1,22 @@
-export type ITransactionType = 'income' | 'outcome';
+import { ICategory } from './category.type';
 
-export interface ITransaction {
+export enum TransactionType {
+  INCOME = 'income',
+  OUTCOME = 'outcome',
+}
+
+export interface ITransactionProps {
   id: string;
   description: string;
-  type: ITransactionType;
+  categoryId: string;
+  type: TransactionType;
   price: number;
-  category: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface ITransaction extends ITransactionProps {
+  category: ICategory;
 }
 
 export type ICreateTransaction = Omit<

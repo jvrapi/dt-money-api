@@ -2,8 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 
-import { AppController, TransactionController } from './app/controllers';
+import {
+  AppController,
+  CategoryController,
+  TransactionController,
+} from './app/controllers';
 import { ListTransactionsService } from './app/services';
+import { ListCategoriesService } from './app/services/categories';
 import { PinoFactory } from './config';
 import { DatabaseModule } from './infra/modules';
 
@@ -15,7 +20,7 @@ import { DatabaseModule } from './infra/modules';
     }),
     DatabaseModule,
   ],
-  controllers: [AppController, TransactionController],
-  providers: [ListTransactionsService],
+  controllers: [AppController, CategoryController, TransactionController],
+  providers: [ListTransactionsService, ListCategoriesService],
 })
 export class AppModule {}
