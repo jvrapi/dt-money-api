@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { TransactionRepository } from '../repositories';
+import { TransactionRepository } from '../../repositories';
 
 @Injectable()
 export class ListTransactionsService {

@@ -7,8 +7,8 @@ import {
   CategoryController,
   TransactionController,
 } from './app/controllers';
-import { ListTransactionsService } from './app/services';
 import { ListCategoriesService } from './app/services/categories';
+import { ListTransactionsService } from './app/services/transactions';
 import { PinoFactory } from './config';
 import { DatabaseModule } from './infra/modules';
 
