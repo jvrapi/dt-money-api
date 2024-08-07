@@ -1,7 +1,9 @@
+export type ITransactionType = 'income' | 'outcome';
+
 export interface ITransaction {
   id: string;
   description: string;
-  type: 'income' | 'outcome';
+  type: ITransactionType;
   price: number;
   category: string;
   createdAt: Date;

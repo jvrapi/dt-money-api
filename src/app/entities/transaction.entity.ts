@@ -1,9 +1,9 @@
-import { ITransaction, TransactionType } from '@/types';
+import { ITransaction, ITransactionType } from '@/types';
 
 export class Transaction implements ITransaction {
   id: string;
   description: string;
-  type: TransactionType;
+  type: ITransactionType;
   price: number;
   category: string;
   createdAt: Date;
