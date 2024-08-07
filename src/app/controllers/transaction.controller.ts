@@ -3,7 +3,7 @@ import { ListTransactionsService } from "../services";
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { Transaction } from "../entities";
 
-@ApiTags('transcations')
+@ApiTags('transactions')
 @Controller('transactions')
 export class TransactionController {
 
