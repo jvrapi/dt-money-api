@@ -1,1 +1,1 @@
-export * from './pino.config'
+export * from './pino.config';

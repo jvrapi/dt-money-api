@@ -1,16 +1,18 @@
-import { Module } from "@nestjs/common";
-import { PrismaService } from "../database/connection";
-import { TransactionRepository } from "@/app/repositories";
-import { PrismaTransactionRepository } from "../database/repositories";
+import { Module } from '@nestjs/common';
+
+import { TransactionRepository } from '@/app/repositories';
+
+import { PrismaService } from '../database/connection';
+import { PrismaTransactionRepository } from '../database/repositories';
 
 @Module({
   providers: [
     {
       provide: TransactionRepository,
-      useClass: PrismaTransactionRepository
+      useClass: PrismaTransactionRepository,
     },
-    PrismaService
+    PrismaService,
   ],
-  exports: [TransactionRepository]
+  exports: [TransactionRepository],
 })
-export class DatabaseModule{}
+export class DatabaseModule {}

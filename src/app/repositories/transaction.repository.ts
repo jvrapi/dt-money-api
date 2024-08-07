@@ -1,5 +1,5 @@
-import { Transaction } from "../entities";
+import { Transaction } from '../entities';
 
 export abstract class TransactionRepository {
-  abstract list(): Promise<Transaction[]>
+  abstract list(): Promise<Transaction[]>;
 }

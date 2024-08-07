@@ -1,1 +1,1 @@
-export * from './transaction.mapper'
+export * from './transaction.mapper';

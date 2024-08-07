@@ -1,6 +1,4 @@
-import { ITransaction, TransactionType } from "@/types";
-
-
+import { ITransaction, TransactionType } from '@/types';
 
 export class Transaction implements ITransaction {
   id: string;
@@ -12,15 +10,12 @@ export class Transaction implements ITransaction {
   updatedAt: Date;
 
   constructor(props: ITransaction) {
-    this.id = props.id
-    this.description = props.description
-    this.type = props.type
-    this.price = props.price
-    this.category = props.category
-    this.createdAt = props.createdAt
-    this.updatedAt = props.updatedAt
+    this.id = props.id;
+    this.description = props.description;
+    this.type = props.type;
+    this.price = props.price;
+    this.category = props.category;
+    this.createdAt = props.createdAt;
+    this.updatedAt = props.updatedAt;
   }
-
-
-
 }
