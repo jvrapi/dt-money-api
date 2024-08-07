@@ -9,7 +9,7 @@ export class ListTransactionsService {
 
   async execute() {
     try {
-      return this.transactionRepository.list();
+      return this.transactionRepository.findAll();
     } catch (error) {
       this.logger.error(error);
     }

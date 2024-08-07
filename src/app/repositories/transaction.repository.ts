@@ -1,5 +1,5 @@
 import { Transaction } from '../entities';
 
 export abstract class TransactionRepository {
-  abstract list(): Promise<Transaction[]>;
+  abstract findAll(): Promise<Transaction[]>;
 }
