@@ -1,4 +1,4 @@
-import { ICategory } from './category.type';
+import { ISubCategory } from './sub-category.type';
 
 export enum TransactionType {
   INCOME = 'income',
@@ -16,7 +16,7 @@ export interface ITransactionProps {
 }
 
 export interface ITransaction extends ITransactionProps {
-  category: ICategory;
+  subCategory: ISubCategory;
 }
 
 export type ICreateTransaction = Omit<

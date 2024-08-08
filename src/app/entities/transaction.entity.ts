@@ -1,6 +1,6 @@
 import { ITransaction, ITransactionProps, TransactionType } from '@/types';
 
-import { Category } from './category.entity';
+import { SubCategory } from './sub-category.entity';
 
 export class Transaction implements ITransaction {
   id: string;
@@ -10,7 +10,7 @@ export class Transaction implements ITransaction {
   categoryId: string;
   createdAt: Date;
   updatedAt: Date;
-  category: Category;
+  subCategory: SubCategory;
 
   constructor(props: ITransactionProps) {
     this.id = props.id;
@@ -22,7 +22,7 @@ export class Transaction implements ITransaction {
     this.categoryId = props.categoryId;
   }
 
-  setCategory(category: Category) {
-    this.category = category;
+  setSubCategory(subCategory: SubCategory) {
+    this.subCategory = subCategory;
   }
 }
