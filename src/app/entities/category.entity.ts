@@ -1,11 +1,13 @@
-import { ICategory, ICategoryProps, ISubCategory } from '@/types';
+import { ICategory, ICategoryProps } from '@/types';
+
+import { SubCategory } from './sub-category.entity';
 
 export class Category implements ICategory {
   id: string;
   name: string;
   createdAt: Date;
   updatedAt: Date;
-  subCategories: ISubCategory[] = [];
+  subCategories: SubCategory[] = [];
 
   constructor(props: ICategoryProps) {
     this.id = props.id;
@@ -14,7 +16,7 @@ export class Category implements ICategory {
     this.updatedAt = props.updatedAt;
   }
 
-  addSubCategory(subCategory: ISubCategory) {
+  addSubCategory(subCategory: SubCategory) {
     this.subCategories.push(subCategory);
   }
 }
