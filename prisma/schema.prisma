@@ -26,7 +26,7 @@ model Transaction {
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @default(now())
   categoryId    String?
-  Subcategory   SubCategory? @relation(fields: [subcategoryId], references: [id])
+  subcategory   SubCategory? @relation(fields: [subcategoryId], references: [id])
   subcategoryId String?
 
   @@map("transactions")
@@ -38,7 +38,7 @@ model Category {
   description   String?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @default(now())
-  subcategories SubCategory[]
+  subCategories SubCategory[]
 
   @@map("categories")
 }
@@ -50,7 +50,7 @@ model SubCategory {
   description  String?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @default(now())
-  Category     Category      @relation(fields: [categoryId], references: [id])
+  category     Category      @relation(fields: [categoryId], references: [id])
   transactions Transaction[]
 
   @@map("subcategories")

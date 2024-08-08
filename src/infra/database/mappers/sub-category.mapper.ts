@@ -1,14 +1,15 @@
-import { Prisma } from '@prisma/client';
+import {
+  Category as PrismaCategory,
+  SubCategory as PrismaSubCategory,
+} from '@prisma/client';
 
 import { SubCategory } from '@/app/entities';
 
 import { CategoryMapper } from './category.mapper';
 
-type Raw = Prisma.SubCategoryGetPayload<{
-  include: {
-    Category: true;
-  };
-}>;
+interface Raw extends PrismaSubCategory {
+  category?: PrismaCategory;
+}
 
 export class SubCategoryMapper {
   static toApp(raw: Raw) {
@@ -20,8 +21,8 @@ export class SubCategoryMapper {
       createdAt: raw.createdAt,
     });
 
-    if (raw.Category) {
-      subCategory.setCategory(CategoryMapper.toApp(raw.Category));
+    if (raw.category) {
+      subCategory.setCategory(CategoryMapper.toApp(raw.category));
     }
 
     return subCategory;

@@ -1,4 +1,4 @@
-import { ICategory, ISubCategory, ISubCategoryProps } from '@/types';
+import { ISubCategory, ISubCategoryProps } from '@/types';
 
 import { Category } from './category.entity';
 
@@ -18,7 +18,7 @@ export class SubCategory implements ISubCategory {
     this.createdAt = subCategory.createdAt;
   }
 
-  setCategory(category: ICategory) {
+  setCategory(category: Category) {
     this.category = category;
   }
 }

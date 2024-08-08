@@ -1,19 +1,16 @@
-import { Prisma } from '@prisma/client';
+import {
+  SubCategory as PrismaSubCategory,
+  Transaction as PrismaTransaction,
+} from '@prisma/client';
 
 import { Transaction } from '@/app/entities';
 import { TransactionType } from '@/types';
 
 import { SubCategoryMapper } from './sub-category.mapper';
 
-type Raw = Prisma.TransactionGetPayload<{
-  include: {
-    Subcategory: {
-      include: {
-        Category: true;
-      };
-    };
-  };
-}>;
+interface Raw extends PrismaTransaction {
+  subcategory?: PrismaSubCategory;
+}
 
 export class TransactionMapper {
   static toApp(raw: Raw): Transaction {
@@ -24,8 +21,8 @@ export class TransactionMapper {
       categoryId: raw.categoryId,
     });
 
-    if (raw.Subcategory) {
-      transaction.setSubCategory(SubCategoryMapper.toApp(raw.Subcategory));
+    if (raw.subcategory) {
+      transaction.setSubCategory(SubCategoryMapper.toApp(raw.subcategory));
     }
 
     return transaction;

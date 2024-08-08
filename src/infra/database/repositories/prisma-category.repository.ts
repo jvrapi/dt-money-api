@@ -12,7 +12,11 @@ export class PrismaCategoryRepository implements CategoryRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
   async findAll(): Promise<Category[]> {
-    const categories = await this.prismaService.category.findMany();
+    const categories = await this.prismaService.category.findMany({
+      include: {
+        subCategories: true,
+      },
+    });
 
     return categories.map(CategoryMapper.toApp);
   }

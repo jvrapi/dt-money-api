@@ -13,9 +13,9 @@ export class PrismaTransactionRepository implements TransactionRepository {
   async findAll(): Promise<Transaction[]> {
     const transactions = await this.prismaService.transaction.findMany({
       include: {
-        Subcategory: {
+        subcategory: {
           include: {
-            Category: true,
+            category: true,
           },
         },
       },

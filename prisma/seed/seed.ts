@@ -222,7 +222,7 @@ const main = async () => {
       const createdCategory = await prisma.category.create({
         data: {
           name,
-          subcategories: {
+          subCategories: {
             create: subcategories,
           },
         },

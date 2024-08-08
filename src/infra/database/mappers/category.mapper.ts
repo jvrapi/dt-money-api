@@ -1,6 +1,15 @@
-import { Category as Raw } from '@prisma/client';
+import {
+  Category as PrismaCategory,
+  SubCategory as PrismaSubCategory,
+} from '@prisma/client';
 
 import { Category } from '@/app/entities';
+
+import { SubCategoryMapper } from './sub-category.mapper';
+
+interface Raw extends PrismaCategory {
+  subCategories?: PrismaSubCategory[];
+}
 
 export class CategoryMapper {
   static toApp(raw: Raw) {
@@ -11,6 +20,12 @@ export class CategoryMapper {
       updatedAt: raw.updatedAt,
       name: raw.name,
     });
+
+    if (raw.subCategories.length) {
+      raw.subCategories.forEach((subcategory) => {
+        category.addSubCategory(SubCategoryMapper.toApp(subcategory));
+      });
+    }
 
     return category;
   }
