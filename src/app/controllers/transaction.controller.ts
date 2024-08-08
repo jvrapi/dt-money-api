@@ -1,8 +1,19 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 
 import { SaveTransactionDTO } from '../dtos';
 import {
+  DeleteTransactionService,
   ListTransactionsService,
   SaveTransactionService,
 } from '../services/transactions';
@@ -13,6 +24,7 @@ export class TransactionController {
   constructor(
     private readonly listTransactionService: ListTransactionsService,
     private readonly saveTransactionService: SaveTransactionService,
+    private readonly deleteTransactionService: DeleteTransactionService,
   ) {}
 
   @Get()
@@ -32,5 +44,12 @@ export class TransactionController {
   ) {
     await this.saveTransactionService.execute({ ...transaction, id });
     return { id };
+  }
+
+  @Delete(':id')
+  async deleteTransaction(@Res() response: Response, @Param('id') id: string) {
+    await this.deleteTransactionService.execute(id);
+
+    return response.status(204).send();
   }
 }
