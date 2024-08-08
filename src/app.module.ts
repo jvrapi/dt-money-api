@@ -8,7 +8,10 @@ import {
   TransactionController,
 } from './app/controllers';
 import { ListCategoriesService } from './app/services/categories';
-import { ListTransactionsService } from './app/services/transactions';
+import {
+  ListTransactionsService,
+  SaveTransactionService,
+} from './app/services/transactions';
 import { PinoFactory } from './config';
 import { DatabaseModule } from './infra/modules';
 
@@ -21,6 +24,10 @@ import { DatabaseModule } from './infra/modules';
     DatabaseModule,
   ],
   controllers: [AppController, CategoryController, TransactionController],
-  providers: [ListTransactionsService, ListCategoriesService],
+  providers: [
+    ListTransactionsService,
+    ListCategoriesService,
+    SaveTransactionService,
+  ],
 })
 export class AppModule {}

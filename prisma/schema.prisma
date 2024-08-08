@@ -19,15 +19,15 @@ enum Type {
 }
 
 model Transaction {
-  id            String       @id @default(uuid())
+  id            String   @id @default(uuid())
+  subCategoryId String?  @map("sub_category_id")
   description   String
   price         Decimal
   type          Type
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @default(now())
-  categoryId    String?
-  subcategory   SubCategory? @relation(fields: [subcategoryId], references: [id])
-  subcategoryId String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+
+  subcategory SubCategory? @relation(fields: [subCategoryId], references: [id])
 
   @@map("transactions")
 }
@@ -45,7 +45,7 @@ model Category {
 
 model SubCategory {
   id           String        @id @default(uuid())
-  categoryId   String
+  categoryId   String        @map("category_id")
   name         String
   description  String?
   createdAt    DateTime      @default(now())

@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { Transaction as PrismaTransaction } from '@prisma/client';
 
 import { Transaction } from '@/app/entities';
 import { TransactionRepository } from '@/app/repositories';
+import { ISaveTransaction } from '@/types';
 
 import { PrismaService } from '../connection';
 import { TransactionMapper } from '../mappers';
@@ -21,5 +23,24 @@ export class PrismaTransactionRepository implements TransactionRepository {
       },
     });
     return transactions.map(TransactionMapper.toApp);
+  }
+
+  async save(transactionData: ISaveTransaction): Promise<Transaction> {
+    let transaction: PrismaTransaction;
+    if (transaction?.id) {
+      transaction = await this.prismaService.transaction.update({
+        where: { id: transaction.id },
+        data: transactionData,
+      });
+    } else {
+      transaction = await this.prismaService.transaction.create({
+        data: transactionData,
+      });
+    }
+    return TransactionMapper.toApp(transaction);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.prismaService.transaction.delete({ where: { id } });
   }
 }

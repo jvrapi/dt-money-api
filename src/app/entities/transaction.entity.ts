@@ -7,7 +7,7 @@ export class Transaction implements ITransaction {
   description: string;
   type: TransactionType;
   price: number;
-  categoryId: string;
+  subCategoryId: string;
   createdAt: Date;
   updatedAt: Date;
   subCategory: SubCategory;
@@ -19,7 +19,7 @@ export class Transaction implements ITransaction {
     this.price = props.price;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
-    this.categoryId = props.categoryId;
+    this.subCategoryId = props.subCategoryId;
   }
 
   setSubCategory(subCategory: SubCategory) {

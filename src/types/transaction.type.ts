@@ -8,7 +8,7 @@ export enum TransactionType {
 export interface ITransactionProps {
   id: string;
   description: string;
-  categoryId: string;
+  subCategoryId: string;
   type: TransactionType;
   price: number;
   createdAt: Date;
@@ -19,7 +19,7 @@ export interface ITransaction extends ITransactionProps {
   subCategory: ISubCategory;
 }
 
-export type ICreateTransaction = Omit<
-  ITransaction,
-  'id' | 'createdAt' | 'updatedAt'
->;
+export type ISaveTransaction = PartialBy<Omit<
+  ITransactionProps,
+  'createdAt' | 'updatedAt'
+>, 'id'>;
