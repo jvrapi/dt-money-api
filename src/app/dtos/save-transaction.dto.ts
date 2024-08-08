@@ -2,7 +2,7 @@ import { IsEnum, IsNumber, IsPositive, IsString } from 'class-validator';
 
 import { TransactionType } from '@/types';
 
-export class CreateTransactionDTO {
+export class SaveTransactionDTO {
   @IsString()
   description: string;
 

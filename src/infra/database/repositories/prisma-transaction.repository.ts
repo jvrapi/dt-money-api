@@ -27,9 +27,9 @@ export class PrismaTransactionRepository implements TransactionRepository {
 
   async save(transactionData: ISaveTransaction): Promise<Transaction> {
     let transaction: PrismaTransaction;
-    if (transaction?.id) {
+    if (transactionData?.id) {
       transaction = await this.prismaService.transaction.update({
-        where: { id: transaction.id },
+        where: { id: transactionData.id },
         data: transactionData,
       });
     } else {

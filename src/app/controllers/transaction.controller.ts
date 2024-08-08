@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { CreateTransactionDTO } from '../dtos';
+import { SaveTransactionDTO } from '../dtos';
 import {
   ListTransactionsService,
   SaveTransactionService,
@@ -21,7 +21,16 @@ export class TransactionController {
   }
 
   @Post()
-  async createTransaction(@Body() transaction: CreateTransactionDTO) {
+  async createTransaction(@Body() transaction: SaveTransactionDTO) {
     await this.saveTransactionService.execute(transaction);
+  }
+
+  @Put(':id')
+  async updateTransaction(
+    @Param('id') id: string,
+    @Body() transaction: SaveTransactionDTO,
+  ) {
+    await this.saveTransactionService.execute({ ...transaction, id });
+    return { id };
   }
 }

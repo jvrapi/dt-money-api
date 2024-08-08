@@ -21,7 +21,7 @@ export class CategoryMapper {
       name: raw.name,
     });
 
-    if (raw.subCategories.length) {
+    if (raw.subCategories?.length) {
       raw.subCategories.forEach((subcategory) => {
         category.addSubCategory(SubCategoryMapper.toApp(subcategory));
       });
