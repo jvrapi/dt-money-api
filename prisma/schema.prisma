@@ -24,8 +24,8 @@ model Transaction {
   description   String
   price         Decimal
   type          Type
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now())
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @map("updated_at")
 
   subcategory SubCategory? @relation(fields: [subCategoryId], references: [id])
 
@@ -36,8 +36,8 @@ model Category {
   id            String        @id @default(uuid())
   name          String
   description   String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @default(now())
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @default(now()) @map("updated_at")
   subCategories SubCategory[]
 
   @@map("categories")
@@ -48,8 +48,8 @@ model SubCategory {
   categoryId   String        @map("category_id")
   name         String
   description  String?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @default(now())
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @default(now()) @map("updated_at")
   category     Category      @relation(fields: [categoryId], references: [id])
   transactions Transaction[]
 
