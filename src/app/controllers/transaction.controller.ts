@@ -14,6 +14,7 @@ import { Response } from 'express';
 import { SaveTransactionDTO } from '../dtos';
 import {
   DeleteTransactionService,
+  FindTransactionService,
   ListTransactionsService,
   SaveTransactionService,
 } from '../services/transactions';
@@ -25,6 +26,7 @@ export class TransactionController {
     private readonly listTransactionService: ListTransactionsService,
     private readonly saveTransactionService: SaveTransactionService,
     private readonly deleteTransactionService: DeleteTransactionService,
+    private readonly findTransactionService: FindTransactionService,
   ) {}
 
   @Get()
@@ -34,7 +36,9 @@ export class TransactionController {
 
   @Post()
   async createTransaction(@Body() transaction: SaveTransactionDTO) {
-    await this.saveTransactionService.execute(transaction);
+    const newTransaction =
+      await this.saveTransactionService.execute(transaction);
+    return await this.findTransactionService.execute(newTransaction.id);
   }
 
   @Put(':id')

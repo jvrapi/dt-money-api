@@ -1,4 +1,4 @@
-import { Delete, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 
@@ -10,6 +10,7 @@ import {
 import { ListCategoriesService } from './app/services/categories';
 import {
   DeleteTransactionService,
+  FindTransactionService,
   ListTransactionsService,
   SaveTransactionService,
 } from './app/services/transactions';
@@ -30,6 +31,7 @@ import { DatabaseModule } from './infra/modules';
     ListCategoriesService,
     SaveTransactionService,
     DeleteTransactionService,
+    FindTransactionService,
   ],
 })
 export class AppModule {}
