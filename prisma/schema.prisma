@@ -53,5 +53,5 @@ model SubCategory {
   category     Category      @relation(fields: [categoryId], references: [id])
   transactions Transaction[]
 
-  @@map("subcategories")
+  @@map("sub_categories")
 }

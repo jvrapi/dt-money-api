@@ -213,21 +213,32 @@ const categoriesAndSubcategories = [
       { name: 'Outros' },
     ],
   },
+  {
+    name: 'Outros',
+    subCategories: [{ name: 'Presentes' }, { name: 'Cartão de Crédito' }],
+  },
 ];
 
 const main = async () => {
   await Promise.all(
     categoriesAndSubcategories.map(async (category) => {
       const { name, subcategories } = category;
-      const createdCategory = await prisma.category.create({
-        data: {
+      const existingCategory = await prisma.category.findFirst({
+        where: {
           name,
-          subCategories: {
-            create: subcategories,
-          },
         },
       });
-      console.log(`Created category with id: ${createdCategory.id}`);
+      if (!existingCategory) {
+        const createdCategory = await prisma.category.create({
+          data: {
+            name,
+            subCategories: {
+              create: subcategories,
+            },
+          },
+        });
+        console.log(`Created category with id: ${createdCategory.id}`);
+      }
     }),
   );
 };
